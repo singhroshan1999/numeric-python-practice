@@ -334,6 +334,208 @@ x3 = np.loadtxt("file.csv",dtype=dt2unicode,converters={0:lambda x:x.decode('utf
 print(x3)
 
 
+# # <u>Numerical Operations</u>
+
+# ### Scalars
+
+# In[122]:
+
+
+lst = [1,2,3,4,5,6]
+narray = np.array(lst,dtype="d")
+print(narray)
+narray = narray ** 5.5  # any (+-*/**) scalar operation
+print(narray)
+
+
+# In[123]:
+
+
+# equivalent list approach
+lst = [1,2,3,4,5,6]
+lst2 = [x+5.5 for x in lst]
+print(lst)
+print(lst2)
+
+
+# In[125]:
+
+
+# performance (IGNORE)
+
+get_ipython().run_line_magic('timeit', 'narray +5.5')
+get_ipython().run_line_magic('timeit', '[x+5.5 for x in lst]')
+
+
+# ### Two arrays
+
+# In[131]:
+
+
+# operation performed on respective element (not matrix multiplication)
+arr1 = np.arange(9).reshape(3,3)
+print (arr1)
+arr2 = np.identity(3)
+print(arr2)
+print(arr1+arr2)
+print(arr1*(arr2+1)) # (not matrix multiplication)
+
+
+# ### dot product
+
+# In[132]:
+
+
+# using np.dot(array,array,out=None)  --> ndarray
+
+print(np.dot(3, 4))  # scalar
+x = np.array([3])
+y = np.array([4])
+print(x.ndim)
+print(np.dot(x, y))  # zero dimensional array
+x = np.array([3, -2])
+y = np.array([-4, 1])
+print(np.dot(x, y))  # one-d array
+
+
+# In[133]:
+
+
+A = np.array([ [1, 2, 3], 
+               [3, 2, 1] ])
+B = np.array([ [2, 3, 4, -2], 
+               [1, -1, 2, 3],
+               [1, 2, 3, 0] ])
+# es muss gelten:
+print(A.shape[-1] == B.shape[-2], A.shape[1])  # checking condition
+print(np.dot(A, B))  # 2-d array
+
+
+# In[134]:
+
+
+X = np.array( [[[3, 1, 2],
+                [4, 2, 2],
+                [2, 4, 1]],
+               [[3, 2, 2],
+                [4, 4, 3],
+                [4, 1, 1]],
+               [[2, 2, 1],
+                [3, 1, 3],
+                [3, 2, 3]]])
+Y = np.array( [[[2, 3, 1],
+                [2, 2, 4],
+                [3, 4, 4]],
+            
+               [[1, 4, 1],
+                [4, 1, 2],
+                [4, 1, 2]],
+            
+               [[1, 2, 3],
+                [4, 1, 1],
+                [3, 1, 4]]])
+R = np.dot(X, Y)  # 3-d array
+print("The shapes:")
+print(X.shape)
+print(Y.shape)
+print(R.shape)
+print("\nThe Result R:")
+print(R)
+
+
+# ## Numpy Matrix
+
+# In[136]:
+
+
+# using np.mat(array)  --> matrix
+
+A = np.array([ [1, 2, 3], [2, 2, 2], [3, 3, 3] ])
+B = np.array([ [3, 2, 1], [1, 2, 3], [-1, -2, -3] ])
+print(A*B,type(A*B))
+
+MA = np.mat(A)
+MB = np.mat(B)
+print(MA*MB,type(MA*MB))
+
+
+# ### Comparision/logical operator on Array
+
+# In[137]:
+
+
+# this compare array elementwise
+A = np.array([ [11, 12, 13], [21, 22, 23], [31, 32, 33] ])
+B = np.array([ [11, 102, 13], [201, 22, 203], [31, 32, 303] ])
+C = A==B
+print(C,C.dtype)
+
+
+# In[138]:
+
+
+# comparing whole array use np.array_equal(arr,arr)  --> bool
+
+print(np.array_equal(A,B))
+
+
+# In[139]:
+
+
+# elementwise logical and/or using np.logical_[or/and](arr,arr) -->bool_array
+
+a = np.array([ [True, True], [False, False]])
+b = np.array([ [True, False], [True, False]])
+print(np.logical_or(a,b))
+print(np.logical_and(a,b))
+
+
+# ### Broadcasting
+
+# #### example1
+# <img src="files/broadcasting_example_1.png">
+
+# In[140]:
+
+
+A = np.array([ [11, 12, 13], [21, 22, 23], [31, 32, 33] ])
+B = np.array([1, 2, 3])
+print("Multiplication with broadcasting: ")
+print(A * B)
+print("... and now addition with broadcasting: ")
+print(A + B)
+
+
+# #### example2
+# <img src="files/broadcasting_example_2.png">
+
+# In[142]:
+
+
+A = np.array([ [11, 12, 13], [21, 22, 23], [31, 32, 33] ])
+B = np.array([1, 2, 3])
+B = B[:,np.newaxis]  # using newaxis to interchange row  <-->  column
+print(A+B)
+print(A*B)
+
+
+# #### example3
+# <img src="files/broadcasting_example_3.png">
+
+# In[144]:
+
+
+A = np.array([10, 20, 30])
+B = np.array([1, 2, 3])
+# 1st way
+
+print(A*B[:,np.newaxis])
+
+# 2nd way
+
+print(A[:,np.newaxis]*B)
+
+
 # In[ ]:
 
 
