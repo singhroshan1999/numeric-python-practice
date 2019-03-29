@@ -536,6 +536,164 @@ print(A*B[:,np.newaxis])
 print(A[:,np.newaxis]*B)
 
 
+# # <u>Changing dimension of array</u>
+
+# ## <u>Flatten</u> : convert to 1-d array
+
+# In[154]:
+
+
+# using arr.flatten(order="A|F|C") --> 1-d array
+
+A = np.array([[[ 0,  1],
+               [ 2,  3],
+               [ 4,  5],
+               [ 6,  7]],
+              [[ 8,  9],
+               [10, 11],
+               [12, 13],
+               [14, 15]],
+              [[16, 17],
+               [18, 19],
+               [20, 21],
+               [22, 23]]])
+
+print(A.flatten(order = "C"))  # C-style order row-first
+print(A.flatten(order = "F"))  # fortran style order column-first
+print(A.flatten(order = "A"))
+
+
+# In[152]:
+
+
+# using arr.ravel(order = "A|C|F|K")  --> 1d array
+# using np.ravel(a,order)
+
+print(A.ravel())
+print(A.ravel(order="A"))
+print(A.ravel(order="F"))
+print(A.ravel(order="A"))
+print(A.ravel(order="K"))
+print(np.ravel(A,order="F"))
+
+
+# ### Reshape
+
+# In[160]:
+
+
+#using arr.reshape(newshape_tuple,order="C|F|A")
+#using np.reshape(arr,newshape_tuple,order)
+
+X = np.arange(100,dtype = int)
+print(X)
+Y = np.reshape(X,(2,5,10),order = "C")
+print(Y)
+Z = X.reshape((5,2,10),order = "F")
+print("\n\n",Z)
+
+
+# ## <u>Concatenating arrays</u>
+
+# In[161]:
+
+
+# using np.concatenate(arr_tuple,axis=0) --> ndarray
+
+x = np.arange(5);
+y = np.arange(5,10);
+z = np.arange(10,15);
+c = np.concatenate((x,y,z))  #
+print(c)
+
+
+# In[165]:
+
+
+# concatenating multidimenstional array
+# NOTE: dimension should be same
+# axis = 0 by default
+
+x = np.arange(50)
+y = np.arange(50,100)
+x = x.reshape((1,5,10))
+y = y.reshape((1,5,10))
+print(x,"\n\n",y)
+c = np.concatenate((x,y))
+print("\n\n",c)
+
+
+# In[167]:
+
+
+# axis = 1
+print("axis=1\n",np.concatenate((x,y),axis = 1))
+# axis = 2
+print("\n\naxis=2\n",np.concatenate((x,y),axis = 2))
+
+
+# ### Adding new dimension
+
+# In[174]:
+
+
+# using slicing and np.newaxis
+
+# 1d --> 2d
+D1 = np.arange(10)
+print("1D\n",D1)
+D2 = D1[:,np.newaxis]
+print("\n2D\n",D2)
+D22 = D1[np.newaxis,:]
+print("\nalso\n",D22)
+
+# 2d --> 3d
+
+D2 = np.arange(50).reshape((5,10))
+print("\n2D\n",D2)
+print("\n3D\n",D2[np.newaxis,:,:])  # new axis at 0-axis
+print("\n3D another\n",D2[:,np.newaxis,:])  # new axis at 1-axis
+print("\n3D also\n",D2[:,:,np.newaxis])  # new axis at 2-axis
+
+
+# ### Vector stacking
+
+# In[183]:
+
+
+# using np.row_stack(arr_tuple)
+#       np.column_stack(arr_tuple)
+#       np.dstack(arr_tuple)
+# dimension should be same
+
+# 1-d array
+A = np.array([1,2,3])
+B = np.array([4,5,6])
+print(np.row_stack((A,B)),"\n\n")
+print(np.column_stack((A,B)),"\n\n")
+print(np.dstack((A,B)),"\n\n")
+
+# 2-d array
+
+A = np.array([[1,2,3],[4,5,6]])
+B = np.array([[7,8,9],[10,11,12]])
+print("\n\n",A,"\n\n",B,"\n\n")
+print(np.row_stack((A,B)),"\n\n")
+print(np.column_stack((A,B)),"\n\n")
+print(np.dstack((A,B)),"\n\n")
+
+
+# ### Repeating pattern using "tile()"
+
+# In[184]:
+
+
+# using np.tile(arr,reps)  --> reps tuple
+
+x = np.array([ [1, 2], [3, 4]])
+print(np.tile(x,(5,4)))
+
+
 # In[ ]:
 
 
