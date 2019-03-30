@@ -537,6 +537,7 @@ print(A[:,np.newaxis]*B)
 
 
 # # <u>Changing dimension of array</u>
+# <img src = "files/axis.png">
 
 # ## <u>Flatten</u> : convert to 1-d array
 
@@ -692,6 +693,197 @@ print(np.dstack((A,B)),"\n\n")
 
 x = np.array([ [1, 2], [3, 4]])
 print(np.tile(x,(5,4)))
+
+
+# # <u>Probability</u>
+
+# ## <u>Random</u> number and choices
+
+# ### Random Numbers
+
+# In[187]:
+
+
+# using random.random() --> [0,1)
+# not cyptographically safe
+import random
+rnd = random.random()
+print(rnd)
+
+
+# In[191]:
+
+
+# using SystemRandom class --> [0,1)
+# cryptographically safe
+cls = random.SystemRandom()
+print(cls.random())
+
+
+# In[201]:
+
+
+# PRACTICE: generate list of random numbers
+def random_list(n,secure = 0):
+    if secure == 0:
+        rnd = random
+    elif secure == 1:
+        rnd = random.SystemRandom()
+    else:
+        rnd = np.random
+    return [rnd.random() for x in range(n)]
+# print(random_list(20))
+# print(random_list(20,True))
+# print(random_list(40))
+# print(random_list(40,True))
+
+# performance testing
+get_ipython().run_line_magic('timeit', 'random_list(100)')
+get_ipython().run_line_magic('timeit', 'random_list(100,1)')
+get_ipython().run_line_magic('timeit', 'random_list(100,2)')
+get_ipython().run_line_magic('timeit', 'np.random.random(100)')
+get_ipython().run_line_magic('timeit', 'random.random()')
+sec = random.SystemRandom()
+get_ipython().run_line_magic('timeit', 'sec.random()')
+get_ipython().run_line_magic('timeit', 'np.random.random()')
+
+
+# In[203]:
+
+
+# using numpy random number generator np.random.random(list_len)  --> ndarray
+# not secure
+print(np.random.random())
+print(np.random.random(10))
+
+
+# #### Sum to one
+# <i>p1+p2+p3+...+pn = 1</i>
+
+# In[205]:
+
+
+# using arr.sum() to add array
+# using arr/sum to normalize to 1
+
+rnarr = np.random.random(50)
+print(rnarr)
+rnsum = rnarr.sum()
+print(rnsum)
+prob = rnarr/rnsum
+print(prob,"\n\n",prob.sum())
+
+
+# In[224]:
+
+
+# PRACTICE: create random password creator
+def passwd(n,t=3):
+
+    lst = ["abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ","0123456789","_@#$&*!%"]
+    l2 = [len(lst[0]),len(lst[1]),len(lst[2]),len(lst[3])]
+    sr = random.SystemRandom()
+    l = []
+    while(n>0):
+        r = sr.randint(0,t)
+        l.append(lst[r][sr.randint(0,l2[r]-1)])
+        n-=1
+    return "".join(l)
+print(passwd(100,1))
+
+
+# #### Random Integer
+
+# In[226]:
+
+
+# using "PURE" python
+# using random.randint(start,end)
+# NOTE: it gives [start,end)
+
+print([random.randint(1,6) for _ in range(6)])
+
+
+# In[230]:
+
+
+# using numpy np.random.randint(start,end,arr_size)
+
+print(np.random.randint(1,7))  # without size, size = None
+print(np.random.randint(1,7,size = 1))  # size = 1
+print(np.random.randint(1,7,size = 6))  # size = 6
+print(np.random.randint(1,7,size = (3,6)))  # 3x6 array
+
+
+# 
+# ### Choices and samples
+
+# In[235]:
+
+
+# using random.choice(seq)  --> random_element
+# pythonic way
+
+lst = ["India","Sri Lanka","Nepal","China","Bhutan","Bangladesh"]
+tupl = ("India","Sri Lanka","Nepal","China","Bhutan","Bangladesh")
+strng = "roshansingh"
+
+print(random.choice(lst))
+print(random.choice(tupl))
+print(random.choice(strng))
+
+
+# In[253]:
+
+
+# using np.random.choice(seq,size_tuple,replace=true)
+# seq cant be string
+# when replace = false then produce of dimension (size_tuple) must be <= sizeof seq
+# ex size_tuple = (2,3): product = 2x3=6:sizeof seq = 6: since seq == produce: no error: else error
+
+print(np.random.choice(lst))  # just like python's
+print(np.random.choice(lst,size=5))  # 1-d array shape=(5,)
+print(np.random.choice(tupl,size=(2,3)))  # 2-d array shape=(2,3)
+print(np.random.choice(lst,size=(2,3),replace = False))
+
+
+# In[254]:
+
+
+#SAMPLE
+
+
+# In[273]:
+
+
+# using pythonic sample random.sample(population,k) --> list
+#populatin can be sequence or set
+
+lst = ["India","Sri Lanka","Nepal","China","Bhutan","Bangladesh"]
+tupl = ("India","Sri Lanka","Nepal","China","Bhutan","Bangladesh")
+strng = "roshansingh"
+st = set(lst)
+
+print(random.sample(lst,5))
+print(random.sample(tupl,4))
+print(random.sample(strng,3))
+print(random.sample(st,2))
+
+
+# In[268]:
+
+
+# using numpy sample np.random.random_sample(size_tuple)
+# returns [0,1)
+
+print(np.random.random_sample(5))  # size = 5: 1d array of 5 element
+print(np.random.random_sample((5,)))  # size = (5,): 1d array of 5 element
+print(np.random.random_sample((2,5)))  # size = 5: 2d array of 5 element
+print("\n\n")
+# scalar operations
+a = 5
+b = 10
+print((b-a)*np.random.random_sample(10)+a)  # prints float b/w [5,10)
 
 
 # In[ ]:

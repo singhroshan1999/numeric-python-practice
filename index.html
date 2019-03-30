@@ -14750,7 +14750,8 @@ The Result R:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Changing-dimension-of-array"><u>Changing dimension of array</u><a class="anchor-link" href="#Changing-dimension-of-array">&#182;</a></h1>
+<h1 id="Changing-dimension-of-array"><u>Changing dimension of array</u><a class="anchor-link" href="#Changing-dimension-of-array">&#182;</a></h1><p>&lt;img src = "files/axis.png"&gt;</p>
+
 </div>
 </div>
 </div>
@@ -15383,6 +15384,584 @@ also
  [3 4 3 4 3 4 3 4]
  [1 2 1 2 1 2 1 2]
  [3 4 3 4 3 4 3 4]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Probability"><u>Probability</u><a class="anchor-link" href="#Probability">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Random-number-and-choices"><u>Random</u> number and choices<a class="anchor-link" href="#Random-number-and-choices">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Random-Numbers">Random Numbers<a class="anchor-link" href="#Random-Numbers">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[187]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># using random.random() --&gt; [0,1)</span>
+<span class="c1"># not cyptographically safe</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="n">rnd</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rnd</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.4482776815319799
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[191]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># using SystemRandom class --&gt; [0,1)</span>
+<span class="c1"># cryptographically safe</span>
+<span class="bp">cls</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">SystemRandom</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.9026982190162652
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[201]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># PRACTICE: generate list of random numbers</span>
+<span class="k">def</span> <span class="nf">random_list</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">secure</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">secure</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">rnd</span> <span class="o">=</span> <span class="n">random</span>
+    <span class="k">elif</span> <span class="n">secure</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">rnd</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">SystemRandom</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rnd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">rnd</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+<span class="c1"># print(random_list(20))</span>
+<span class="c1"># print(random_list(20,True))</span>
+<span class="c1"># print(random_list(40))</span>
+<span class="c1"># print(random_list(40,True))</span>
+
+<span class="c1"># performance testing</span>
+<span class="o">%</span><span class="k">timeit</span> random_list(100)
+<span class="o">%</span><span class="k">timeit</span> random_list(100,1)
+<span class="o">%</span><span class="k">timeit</span> random_list(100,2)
+<span class="o">%</span><span class="k">timeit</span> np.random.random(100)
+<span class="o">%</span><span class="k">timeit</span> random.random()
+<span class="n">sec</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">SystemRandom</span><span class="p">()</span>
+<span class="o">%</span><span class="k">timeit</span> sec.random()
+<span class="o">%</span><span class="k">timeit</span> np.random.random()
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>24.9 µs ± 3.1 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+215 µs ± 34.8 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+92.6 µs ± 7.7 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+4.44 µs ± 212 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+192 ns ± 22.5 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+1.47 µs ± 22.6 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+885 ns ± 14.6 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[203]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># using numpy random number generator np.random.random(list_len)  --&gt; ndarray</span>
+<span class="c1"># not secure</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.5562301715078897
+[0.93993154 0.49746858 0.0161347  0.47523834 0.98506233 0.48179622
+ 0.15578855 0.29828649 0.75895811 0.09334733]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Sum-to-one">Sum to one<a class="anchor-link" href="#Sum-to-one">&#182;</a></h4><p><i>p1+p2+p3+...+pn = 1</i></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[205]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># using arr.sum() to add array</span>
+<span class="c1"># using arr/sum to normalize to 1</span>
+
+<span class="n">rnarr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rnarr</span><span class="p">)</span>
+<span class="n">rnsum</span> <span class="o">=</span> <span class="n">rnarr</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rnsum</span><span class="p">)</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="n">rnarr</span><span class="o">/</span><span class="n">rnsum</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">prob</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0.18227005 0.92705011 0.98853109 0.60506072 0.9757473  0.32375663
+ 0.68007246 0.50055386 0.87372759 0.3387795  0.09091392 0.10680419
+ 0.65209793 0.76510144 0.46570016 0.8390533  0.79470765 0.68514023
+ 0.21633265 0.51367307 0.92814833 0.59346003 0.037932   0.12443782
+ 0.15415964 0.23751156 0.81771884 0.66567034 0.23887639 0.94353648
+ 0.838727   0.64357568 0.77001931 0.48891249 0.5596574  0.15148528
+ 0.20501057 0.22059789 0.90382313 0.12149789 0.94048456 0.89797663
+ 0.41282156 0.92272499 0.36594889 0.48294182 0.84551425 0.82734679
+ 0.08779187 0.1621394 ]
+27.115522694630183
+[0.00672198 0.03418891 0.03645628 0.02231418 0.03598482 0.0119399
+ 0.02508056 0.01846005 0.03222241 0.01249393 0.00335284 0.00393886
+ 0.02404888 0.02821636 0.01717467 0.03094365 0.02930822 0.02526745
+ 0.00797818 0.01894387 0.03422941 0.02188636 0.0013989  0.00458917
+ 0.00568529 0.00875925 0.03015685 0.02454942 0.00880958 0.03479691
+ 0.03093162 0.02373458 0.02839773 0.01803072 0.02063974 0.00558666
+ 0.00756063 0.00813548 0.03333231 0.00448075 0.03468436 0.0331167
+ 0.01522455 0.0340294  0.01349592 0.01781053 0.03118193 0.03051192
+ 0.0032377  0.00597958] 
+
+ 1.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[224]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># PRACTICE: create random password creator</span>
+<span class="k">def</span> <span class="nf">passwd</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+
+    <span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span><span class="p">,</span><span class="s2">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span><span class="p">,</span><span class="s2">&quot;0123456789&quot;</span><span class="p">,</span><span class="s2">&quot;_@#$&amp;*!%&quot;</span><span class="p">]</span>
+    <span class="n">l2</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">3</span><span class="p">])]</span>
+    <span class="n">sr</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">SystemRandom</span><span class="p">()</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">sr</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">l2</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+        <span class="n">n</span><span class="o">-=</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">passwd</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tAXVnAgCueSdTqgDCNekbLurZstxHtZStBYqpSrhbWpDKbkNOayknvboWlrlFKtAXzyXXijGHHJowyUVoOCYngAscwTeumuplXPH
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Random-Integer">Random Integer<a class="anchor-link" href="#Random-Integer">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[226]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># using &quot;PURE&quot; python</span>
+<span class="c1"># using random.randint(start,end)</span>
+<span class="c1"># NOTE: it gives [start,end)</span>
+
+<span class="nb">print</span><span class="p">([</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[2, 1, 6, 6, 4, 6]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[230]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># using numpy np.random.randint(start,end,arr_size)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>  <span class="c1"># without size, size = None</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">))</span>  <span class="c1"># size = 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="mi">6</span><span class="p">))</span>  <span class="c1"># size = 6</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">)))</span>  <span class="c1"># 3x6 array</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>3
+[2]
+[4 2 2 2 2 5]
+[[4 1 1 6 6 1]
+ [5 2 4 4 6 6]
+ [2 4 1 4 6 2]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Choices-and-samples">Choices and samples<a class="anchor-link" href="#Choices-and-samples">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[235]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># using random.choice(seq)  --&gt; random_element</span>
+<span class="c1"># pythonic way</span>
+
+<span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;India&quot;</span><span class="p">,</span><span class="s2">&quot;Sri Lanka&quot;</span><span class="p">,</span><span class="s2">&quot;Nepal&quot;</span><span class="p">,</span><span class="s2">&quot;China&quot;</span><span class="p">,</span><span class="s2">&quot;Bhutan&quot;</span><span class="p">,</span><span class="s2">&quot;Bangladesh&quot;</span><span class="p">]</span>
+<span class="n">tupl</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;India&quot;</span><span class="p">,</span><span class="s2">&quot;Sri Lanka&quot;</span><span class="p">,</span><span class="s2">&quot;Nepal&quot;</span><span class="p">,</span><span class="s2">&quot;China&quot;</span><span class="p">,</span><span class="s2">&quot;Bhutan&quot;</span><span class="p">,</span><span class="s2">&quot;Bangladesh&quot;</span><span class="p">)</span>
+<span class="n">strng</span> <span class="o">=</span> <span class="s2">&quot;roshansingh&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">lst</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">tupl</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">strng</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Bangladesh
+China
+r
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[253]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># using np.random.choice(seq,size_tuple,replace=true)</span>
+<span class="c1"># seq cant be string</span>
+<span class="c1"># when replace = false then produce of dimension (size_tuple) must be &lt;= sizeof seq</span>
+<span class="c1"># ex size_tuple = (2,3): product = 2x3=6:sizeof seq = 6: since seq == produce: no error: else error</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">lst</span><span class="p">))</span>  <span class="c1"># just like python&#39;s</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>  <span class="c1"># 1-d array shape=(5,)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">tupl</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>  <span class="c1"># 2-d array shape=(2,3)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">replace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Bhutan
+[&#39;Nepal&#39; &#39;India&#39; &#39;Nepal&#39; &#39;India&#39; &#39;India&#39;]
+[[&#39;India&#39; &#39;Sri Lanka&#39; &#39;Bhutan&#39;]
+ [&#39;Nepal&#39; &#39;India&#39; &#39;Sri Lanka&#39;]]
+[[&#39;Sri Lanka&#39; &#39;China&#39; &#39;Bangladesh&#39;]
+ [&#39;Nepal&#39; &#39;India&#39; &#39;Bhutan&#39;]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[254]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#SAMPLE</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[273]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># using pythonic sample random.sample(population,k) --&gt; list</span>
+<span class="c1">#populatin can be sequence or set</span>
+
+<span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;India&quot;</span><span class="p">,</span><span class="s2">&quot;Sri Lanka&quot;</span><span class="p">,</span><span class="s2">&quot;Nepal&quot;</span><span class="p">,</span><span class="s2">&quot;China&quot;</span><span class="p">,</span><span class="s2">&quot;Bhutan&quot;</span><span class="p">,</span><span class="s2">&quot;Bangladesh&quot;</span><span class="p">]</span>
+<span class="n">tupl</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;India&quot;</span><span class="p">,</span><span class="s2">&quot;Sri Lanka&quot;</span><span class="p">,</span><span class="s2">&quot;Nepal&quot;</span><span class="p">,</span><span class="s2">&quot;China&quot;</span><span class="p">,</span><span class="s2">&quot;Bhutan&quot;</span><span class="p">,</span><span class="s2">&quot;Bangladesh&quot;</span><span class="p">)</span>
+<span class="n">strng</span> <span class="o">=</span> <span class="s2">&quot;roshansingh&quot;</span>
+<span class="n">st</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">tupl</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">strng</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">st</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;India&#39;, &#39;China&#39;, &#39;Bhutan&#39;, &#39;Bangladesh&#39;, &#39;Sri Lanka&#39;]
+[&#39;Sri Lanka&#39;, &#39;Bangladesh&#39;, &#39;China&#39;, &#39;India&#39;]
+[&#39;i&#39;, &#39;h&#39;, &#39;n&#39;]
+[&#39;China&#39;, &#39;Bhutan&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[268]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># using numpy sample np.random.random_sample(size_tuple)</span>
+<span class="c1"># returns [0,1)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>  <span class="c1"># size = 5: 1d array of 5 element</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">((</span><span class="mi">5</span><span class="p">,)))</span>  <span class="c1"># size = (5,): 1d array of 5 element</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)))</span>  <span class="c1"># size = 5: 2d array of 5 element</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># scalar operations</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">+</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># prints float b/w [5,10)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0.03038516 0.36005054 0.35241749 0.24784832 0.77310682]
+[0.22534101 0.27704079 0.81476142 0.01155643 0.88710183]
+[[0.39370863 0.44834249 0.7493086  0.32988818 0.97105249]
+ [0.00240775 0.99241698 0.08990621 0.90890048 0.65546851]]
+
+
+
+[8.53706505 7.41786192 7.62096604 6.21728465 6.63643547 8.86778465
+ 9.19674575 9.81329244 9.40787579 9.84670138]
 </pre>
 </div>
 </div>
