@@ -886,6 +886,96 @@ b = 10
 print((b-a)*np.random.random_sample(10)+a)  # prints float b/w [5,10)
 
 
+# <h2><u>Boolean Indexing</u></h2>
+
+# In[7]:
+
+
+arr = np.array([1,2,3,4,5,6])  # 1d array
+print(arr)
+print(arr%2==0)
+
+arr2 = np.array([[0,1,2,3,4,5,6,7,8,9],
+                [10,20,30,40,50,60,70,80,90,100]])  # 2d array
+print(arr2)
+print(arr2%3==0)
+
+
+
+# In[9]:
+
+
+# using ndArray.astype(np.int) to convert bool to int
+
+B = arr%2==0
+print(B)
+print(B.astype(np.int))
+
+
+# <h3>Fancy Indexing</h3>
+
+# In[16]:
+
+
+# using fancy indexing to access element using boolean index and creating copy
+# note: No of Element in boolean ndarray should equal to that of ndarray we are going to access
+C = np.array([123,188,190,99,77,88,100])
+A = np.array([0,1,2,3,4,5,6])
+D = C[A%2==0]
+print(C)
+print(A%2==0)
+print(D)
+
+
+# ### Indexing With Integer array
+
+# In[17]:
+
+
+C[[0, 2, 3, 1, 4, 1]]
+
+
+# ### Nonzero and Where
+
+# In[20]:
+
+
+#nonzero: returns indices of nonzero element of ndarray
+#syntax: np.nonzero(ndarray) or ndarray.nonzero()
+
+a = np.array([[0, 2, 3, 0, 1],
+              [1, 0, 0, 7, 0],
+              [5, 0, 0, 1, 0]])
+print(a.nonzero())
+print(np.nonzero(a))
+
+# transpose
+
+print(np.transpose(a.nonzero()))
+# getting nonzero elements
+a[np.nonzero(a)]
+
+
+# <h1><u>Reading and Writing to file</u></h1>
+
+# In[23]:
+
+
+# saving ndarray to file
+# np.savetxt(fname, X, fmt='%.18e', delimiter=' ', newline='\n', header='', footer='', comments='# ')
+
+x = np.array([[1, 2, 3], 
+              [4, 5, 6],
+              [7, 8, 9]], np.int32)
+np.savetxt("test.txt", x)
+
+#reading from saved files
+y = np.loadtxt("test.txt", delimiter=" ")
+print(y)
+
+
+# <small><i>for more see doc</i></small>
+
 # In[ ]:
 
 
